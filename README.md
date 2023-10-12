@@ -43,15 +43,18 @@
 
 ### Add brazilian contact
 
-[![Preview][product-screenshot]](https://contactbook-two.vercel.app/)
+![contact1](https://github.com/shaurya1703/contact-book-project/assets/84233560/f8a46898-06d6-457e-8ce8-19a7022984ee)
+
 
 ### Add non brazilian contact
 
-[![Preview][product-screenshot2]](https://contactbook-two.vercel.app/)
+![contact2](https://github.com/shaurya1703/contact-book-project/assets/84233560/90006cf8-eb02-4cc5-8487-4e35515515cc)
+
 
 ### Contact List
 
-[![Preview][product-screenshot3]](https://contactbook-two.vercel.app/)
+![contact3](https://github.com/shaurya1703/contact-book-project/assets/84233560/ccfa85e6-16a6-41b3-9e38-a09f50c28ce5)
+
 
 The screens and features are described below:
 
