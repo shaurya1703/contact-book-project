@@ -1,0 +1,518 @@
+@import './_functions.scss';
+@import './_mixins.scss';
+@import './_variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: .7rem;
+}
+
+/* Add a thumb */
+::-webkit-scrollbar-thumb {
+  background: $blue;
+
+  &:hover {
+    background: $dark-blue;
+  }
+
+}
+
+html {
+  overflow: overlay;
+}
+
+body {
+  min-height: 100vh;
+  height: 100%;
+  background: $light-grey;
+  font-family: 'Oxygen', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: $dark-blue;
+}
+
+input,
+button {
+  outline: 0;
+  border: none;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.no__contacts {
+  max-width: 30rem;
+  margin: 2rem auto;
+  padding: .5rem;
+  border: ptr(1) dashed $blue;
+  border-radius: 3rem;
+  opacity: .6;
+
+  p,
+  .addIcon {
+    margin: .5rem;
+    color: $blue;
+  }
+
+  .addIcon {
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: transform 600ms ease;
+
+    &:hover {
+      color: $dark-blue;
+      transform: scale(1.1);
+    }
+
+  }
+
+}
+
+a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1rem;
+    background: #fff;
+    opacity: 0;
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  &:hover,
+  &:focus {
+    &::after {
+      opacity: 1;
+      transform: translate3d(0, .5rem, 0);
+    }
+  }
+
+}
+
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  border: none;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  height: 45rem;
+  overflow: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 ptr(3) ptr(16) 0 rgba($color: $dark-grey, $alpha: 0.2);
+  width: 60%;
+
+  &::backdrop {
+    background: rgba(1, 1, 1, 0.4);
+  }
+
+  &__content {
+    padding: 1.2rem 2.4rem 1rem 2.4rem;
+  }
+
+  &__head {
+    position: relative;
+    @include justify(space-between);
+    background: $blue;
+    padding: 1.2rem 2.4rem;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+
+  &__close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    margin-top: .3rem;
+    @include flexCencerJustify;
+    font-size: 1.4rem;
+    background: rgba($color: #fff, $alpha: 0.2);
+    color: #fff;
+    height: ptr(30);
+    width: ptr(30);
+    border-radius: 50%;
+    transition: all 200ms ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__title {
+    color: #fff;
+  }
+
+  &__row {
+    margin-bottom: 1.2rem;
+  }
+
+  &__col {
+    label {
+      display: block;
+      font-weight: 700;
+      color: $dark-blue;
+      margin-bottom: 0.6rem;
+    }
+
+    input,
+    select {
+      outline: 0;
+      border: ptr(1) solid rgba($grey, $alpha: 0.5);
+      border-radius: ptr(3);
+      color: $dark-grey;
+      width: 100%;
+      padding: 0.5rem 0.8rem;
+      font-size: 1rem;
+      font-family: inherit;
+
+      &:focus {
+        box-shadow: 0 ptr(1) 0 $blue;
+      }
+
+    }
+
+    .error {
+      border: ptr(1) solid #d33c41;
+    }
+  }
+}
+
+.pushable {
+  background: $dark-blue;
+  border: none;
+  border-radius: ptr(12);
+  padding: 0;
+  cursor: pointer;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:hover &__front {
+    transform: translateY(ptr(-6));
+  }
+
+  &:active &__front {
+    transform: translateY(ptr(-2));
+  }
+
+  &__front {
+    display: block;
+    width: 10rem;
+    padding: ptr(12) ptr(20);
+    border-radius: ptr(12);
+    font-size: 1.25rem;
+    background: $blue;
+    color: white;
+    transform: translateY(ptr(-4));
+    will-change: transform;
+    transition: transform 250ms;
+  }
+
+}
+
+.github {
+
+  &:hover {
+
+    .octo-arm {
+      animation: octocatWave 600ms ease-in-out;
+    }
+
+  }
+
+  .octoSvg {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+
+}
+
+
+@keyframes octocatWave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-25deg);
+  }
+
+  40% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+    transform: rotate(-25deg);
+  }
+
+  80% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+
+  .github-corner .octo-arm {
+    animation: octocatWave 560ms ease-in-out;
+  }
+}
+
+.footer {
+  @include justify(space-between);
+
+  &__save,
+  &__update,
+  &__close,
+  &__delete {
+    font-size: 1.1rem;
+    color: #fff;
+    padding: 0.6rem 2rem;
+    border-radius: ptr(4);
+    transition: all 200ms ease;
+
+    &:hover {
+      transform: translateY(ptr(1));
+    }
+
+  }
+
+  &__save,
+  &__update {
+    background: $blue;
+    box-shadow: 0 ptr(2) 0 0 $dark-blue;
+    margin-right: 0.6rem;
+
+    &:hover {
+      box-shadow: 0 ptr(1) 0 0 $dark-blue;
+    }
+  }
+
+  &__close {
+    background: $light-grey;
+    box-shadow: 0 ptr(2) 0 0 $grey;
+    color: $dark-blue;
+
+    &:hover {
+      box-shadow: 0 ptr(1) 0 0 $grey;
+    }
+  }
+
+  &__delete {
+    background: $light-grey;
+    box-shadow: 0 ptr(2) 0 0 $grey;
+    color: $grey;
+
+    &:hover {
+      background: $red;
+      color: #fff;
+      box-shadow: 0 ptr(1) 0 0 $dark-red;
+    }
+  }
+}
+
+.none {
+  display: none;
+}
+
+.grid {
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 1.3rem;
+  }
+}
+
+.contact {
+  padding: 1.4rem;
+  margin: 0 auto;
+  max-width: ptr(1200);
+  min-width: ptr(300);
+
+  &__icon {
+    margin-bottom: -.1rem;
+  }
+
+  &__content {
+    background: #fff;
+    padding: 1.6rem;
+    border-radius: ptr(4);
+  }
+
+  &__head {
+    @include flexCenterOptionallyCol(column, flex-start);
+    padding-top: 1.5rem;
+    margin-bottom: 2rem;
+
+    h2 {
+      text-align: left;
+      font-size: 2.2rem;
+    }
+
+    h4 {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    iconify-icon {
+      color: $blue;
+      margin-right: 1rem;
+      font-size: 2.5rem;
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+
+    &--button {
+      color: #fff;
+      padding: 0.8rem;
+      border-radius: ptr(3);
+      transition: all 200ms ease;
+      background: $blue;
+      box-shadow: 0 ptr(2) 0 0 $dark-blue;
+
+      &:hover {
+        transform: translateY(ptr(1));
+        box-shadow: 0 ptr(1) 0 0 $dark-blue;
+      }
+    }
+  }
+
+  &__list {
+    margin: 1rem 0;
+    min-height: ptr(450);
+  }
+
+  &__table {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+
+    &--head {
+      border-bottom: ptr(1) solid #e3e4f1;
+
+      th {
+        color: $dark-grey;
+        padding-bottom: 0.8rem;
+      }
+    }
+
+    &--body {
+      tr {
+        cursor: pointer;
+
+        &:hover {
+          background: $blue;
+          transition: all 200ms ease;
+
+          td,
+          span {
+            color: #fff;
+          }
+
+          td:nth-child(3) span {
+            background: #fff;
+            color: rgba($color: $dark-grey, $alpha: 0.6);
+          }
+        }
+      }
+
+      td {
+        padding: 1.5rem 0;
+        color: rgba($color: $dark-grey, $alpha: 0.6);
+        font-weight: 600;
+
+        &:nth-child(1) {
+          padding: 0 1rem 0 0.5rem;
+        }
+
+        &:nth-child(2) {
+          font-weight: 800;
+        }
+
+        &:nth-child(3) {
+          span {
+            display: inline-block;
+            background: $light-grey;
+            padding: 0.3rem 0.6rem;
+            border-radius: ptr(8);
+          }
+        }
+      }
+    }
+  }
+
+  &__name {
+    color: $dark-blue;
+  }
+
+  &__address {
+    font-weight: 600;
+    color: rgba($color: $dark-grey, $alpha: 0.6);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal {
+    width: 90%;
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__content {
+      max-height: 35rem;
+      overflow: auto;
+    }
+
+  }
+
+  .grid {
+    &__row {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .pushable {
+
+    &__front {
+      width: 8rem;
+      padding: .75rem .55rem;
+    }
+
+
+  }
+
+}
